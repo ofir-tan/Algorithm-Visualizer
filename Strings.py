@@ -2,7 +2,7 @@ COPYRIGHT = '© Copyright: Ofir Tanami 2021'
 # q1:
 sort_colors = "Sort Colors"
 inst_sort_colors = """ Given an array nums with n objects colored red, blue, or green,
-sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+sort them in-place so that objects of the same color are adjacent, with the colors in the order red, green, and blue.
 Time Complexity: O(n), Space Complexity: O(1)."""
 
 # q2:

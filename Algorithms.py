@@ -42,7 +42,6 @@ class Algorithms:
             l = f = 0
             r = len(nums) - 1
             while f <= r:
-                # draw array:
                 if nums[f] == 0:
                     nums[l], nums[f] = nums[f], nums[l]
                     l += 1
@@ -51,7 +50,7 @@ class Algorithms:
                     f -= 1
                     r -= 1
                 f += 1
-
+                # draw array:
                 array_ax.imshow(nums.reshape((1, n)), cmap='brg')
                 iter_text_box.set_text(f'Iteration: {f}')
                 plt.pause(.15)
@@ -67,6 +66,7 @@ class Algorithms:
     ### [2] Number of Islands ###
     def grid_bfs(self, grid, source, directions=((-1, 0), (1, 0), (0, -1), (0, 1))):
         def in_grid():
+            nonlocal xx, yy, grid
             return (0 <= xx < len(grid)) and (0 <= yy < len(grid[xx]))
 
         # bfs:
@@ -75,8 +75,8 @@ class Algorithms:
         while q:
             x, y = q.pop(0)
             # visit the neighbors:
-            for dr in directions:
-                xx, yy = x + dr[0], y + dr[1]
+            for dx, dy in directions:
+                xx, yy = x + dx, y + dy
                 if in_grid() and grid[xx][yy] == 2:
                     q.append((xx, yy))
                     grid[xx][yy] = 1  # mark as visited
@@ -88,9 +88,9 @@ class Algorithms:
 
         my_slider, _ = slider(update, init=self.n, minval=4, maxval=20)
         inst_text_box = self.menu.text_box(s.inst_num_islands, [0.5, 0.78])
-
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
+
         if self.menu != '0':  # menu == '0' -> Back
             iter_text_box = self.menu.text_box(f'Iteration: 0', [.5, .1], size=32)
             grid = rd.choice([0, 2], (self.n, self.n))
@@ -188,6 +188,7 @@ class Algorithms:
         inst_text_box = self.menu.text_box(s.inst_rotated_array, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
+
         if self.menu != '0':  # menu == '0' -> Back
             n = self.n
             nums = np.arange(n)
@@ -266,6 +267,7 @@ class Algorithms:
 
             # b. algorithm starts here:
             def in_grid():
+                nonlocal xx, yy, grid
                 return (0 <= xx < len(grid)) and (0 <= yy < len(grid[xx]))
 
             def print_path(d, p):
@@ -297,8 +299,8 @@ class Algorithms:
                         q = []
                         break
                     # visit the neighbors:
-                    for dr in directions:
-                        xx, yy = x + dr[0], y + dr[1]
+                    for dx, dy in directions:
+                        xx, yy = x + dx, y + dy
                         if in_grid() and grid[xx][yy] == 0 and (xx, yy) not in path:
                             q.append((xx, yy))
                             path[(xx, yy)] = (x, y)
@@ -367,7 +369,6 @@ class Algorithms:
         if self.menu != '0':  # menu == '0' -> Back
             a = LinkedList(list(rd.randint(1, MAX, rd.randint(1, self.n))))
             b = LinkedList(list(rd.randint(1, MAX, rd.randint(1, self.n))))
-
             input_text_box = self.menu.text_box(f"First List:  {a}\n"
                                                 f"Second List: {b}", location=(.5, .6), size=24)
 
@@ -404,7 +405,6 @@ class Algorithms:
             out_text_box = self.menu.text_box(f"Sum: {c}", location=(.5, .2), size=24, color="#2ff4fc")
             while self.wait(): plt.pause(0.0001)
             self.set_wait()
-
             input_text_box.remove()
             step_text_box.remove()
             out_text_box.remove()
@@ -415,7 +415,6 @@ class Algorithms:
 
     def rotate_image(self):
         # a. generate input and vialization objects:
-
         inst_text_box = self.menu.text_box(s.inst_rotate_image, [0.5, 0.78])
         matrix = plt.imread(self.path.format("rotate"))
         matrix = matrix.copy()
@@ -442,7 +441,6 @@ class Algorithms:
             reverse(matrix)
             plt.pause(1)
             grix_ax.imshow(matrix)
-
             # c. algorithm ends here
         grix_ax.remove()
         inst_text_box.remove()
@@ -479,12 +477,11 @@ class Algorithms:
                 y = rd.random()
                 if x ** 2 + y ** 2 < 1:
                     inside += 1
-                # update π text box (10 times for each run)
-
+                # update points (x)
                 if self.n > 1000 and point % (self.n // 1000) == 0:
                     xx = np.c_[xx, x]
                     yy = np.c_[yy, y]
-
+                # update π text box (10 times for each run)
                 if point % (self.n // 10) == 0 or point == self.n:
                     plt.pause(0.1)
                     plot_ax.plot(xx, yy, 'xr')
@@ -495,7 +492,6 @@ class Algorithms:
                     pi_text_box.set_text(f'Estimated π: {estimated_pi}')
 
             # c. algorithm ends here
-
             while self.wait(): plt.pause(0.0001)
             self.set_wait()
             point_text_box.remove()
