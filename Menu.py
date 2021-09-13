@@ -51,7 +51,7 @@ class Menu:
             self.add_button(str(i) + '. ' + button, location, colors[i % 2],
                             self.menu_event, key_value=str(i))
 
-        right_buttons = [s.rotated_array, s.nearest_exit, s.rotate_list, s.calculate_pi, s.container]
+        right_buttons = [s.rotated_array, s.nearest_exit, s.rotate_list, s.calculate_pi, s.game_of_life]
         for i, button in enumerate(right_buttons, len(left_buttons) + 1):
             location = [round(x, 2) for x in [0.6, 1.3 - i * .1, 0.2, 0.05]]
             self.add_button(str(i) + '. ' + button, location, colors[i % 2],
@@ -75,10 +75,9 @@ class Menu:
         self.set_title(title)
         self.create_menu_buttons()
 
-    def function_page(self, title):
+    def function_page(self):
         # remove buttons:
         self.clear_buttons()
-        self.title.set_text(title)
         self.add_button('Back', [.05, .88, 0.07, 0.05], '#00ceec', self.menu_event, key_value='0')
         self.add_button('Reset', [0.9, 0.88, 0.07, 0.05], '#00ceec', self.wait_event)
         self.add_button('Start', [0.8, 0.88, 0.07, 0.05], '#00ceec', self.wait_event)

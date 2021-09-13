@@ -3,7 +3,6 @@ import numpy as np
 from numpy import random as rd
 import Strings as s
 from LinkedList import *
-
 from Widgets import slider
 
 class Algorithms:
@@ -18,13 +17,15 @@ class Algorithms:
     def set_wait(self):
         self.menu.wait = True
 
+    def update(self, val):
+        self.n = val
+
     ### [1] Sort Colors ###
     def sort_colors(self) -> None:
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=3, maxval=20)
+        self.menu.title.set_text(s.sort_colors)
+        my_slider, _ = slider(self.update, init=self.n, minval=3, maxval=20)
         inst_text_box = self.menu.text_box(s.inst_sort_colors, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -81,12 +82,11 @@ class Algorithms:
                     q.append((xx, yy))
                     grid[xx][yy] = 1  # mark as visited
 
-    def numIslands(self):
+    def num_islands(self):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=4, maxval=20)
+        self.menu.title.set_text(s.num_islands)
+        my_slider, _ = slider(self.update, init=self.n, minval=4, maxval=20)
         inst_text_box = self.menu.text_box(s.inst_num_islands, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -120,12 +120,11 @@ class Algorithms:
         my_slider.remove()
 
     ### [3] Max Profit ###
-    def maxProfit(self):
+    def max_profit(self):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=1, maxval=15)
+        self.menu.title.set_text(s.max_profit)
+        my_slider, _ = slider(self.update, init=self.n, minval=1, maxval=15)
         inst_text_box = self.menu.text_box(s.inst_max_profit, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -181,10 +180,9 @@ class Algorithms:
 
     def rotated_sorted_array(self):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=0, maxval=2048, valstep=256)
+        self.menu.title.set_text(s.inst_rotated_array)
+        my_slider, _ = slider(self.update, init=self.n, minval=0, maxval=2048, valstep=256)
         inst_text_box = self.menu.text_box(s.inst_rotated_array, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -248,10 +246,9 @@ class Algorithms:
     ### [5] Nearest Exit ###
     def nearest_exit(self, ):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=4, maxval=30)
+        self.menu.title.set_text(s.nearest_exit)
+        my_slider, _ = slider(self.update, init=self.n, minval=4, maxval=30)
         inst_text_box = self.menu.text_box(s.inst_nearest_exit, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -318,10 +315,9 @@ class Algorithms:
     ### [6] Rotate List ###
     def rotate_list(self):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=1, maxval=15)
+        self.menu.title.set_text(s.rotate_list)
+        my_slider, _ = slider(self.update, init=self.n, minval=1, maxval=15)
         inst_text_box = self.menu.text_box(s.inst_rotate_list, [0.5, 0.78], size=20)
         if self.menu != '0':  # menu == '0' -> Back
             while self.wait(): plt.pause(0.0001)
@@ -358,11 +354,8 @@ class Algorithms:
 
         # a. generate input and vialization objects:
         MAX = 10
-
-        def update(val):
-            self.n = val
-
-        my_slider, _ = slider(update, init=self.n, minval=1, maxval=15)
+        self.menu.title.set_text(s.add_two_huge_numbers)
+        my_slider, _ = slider(self.update, init=self.n, minval=1, maxval=15)
         inst_text_box = self.menu.text_box(s.inst_add_two, [0.5, 0.78])
         while self.wait(): plt.pause(0.0001)
         self.set_wait()
@@ -373,14 +366,14 @@ class Algorithms:
                                                 f"Second List: {b}", location=(.5, .6), size=24)
 
             # b. algorithm starts here:
-            c = prev = None
-            rest = 0
             a.reverse()
             b.reverse()
             # diplay step one:
             step_text_box = self.menu.text_box("Step 1 - reverse lists:\n"
                                                f"First List:  {a}\n"
                                                f"Second List: {b}", location=(.5, .4), size=24)
+            c = prev = None
+            rest = 0
             a, b = a.head, b.head
             while a or b:
                 value = rest
@@ -415,6 +408,7 @@ class Algorithms:
 
     def rotate_image(self):
         # a. generate input and vialization objects:
+        self.menu.title.set_text(s.rotate_image)
         inst_text_box = self.menu.text_box(s.inst_rotate_image, [0.5, 0.78])
         matrix = plt.imread(self.path.format("rotate"))
         matrix = matrix.copy()
@@ -448,10 +442,9 @@ class Algorithms:
     ### [9] Calculate Pi ###
     def calculate_pi(self):
         # a. generate input and vialization objects:
-        def update(val):
-            self.n = val
 
-        my_slider, _ = slider(update, init=self.n, minval=100000, maxval=10 ** 6, valstep=100000)
+        self.menu.title.set_text(s.calculate_pi)
+        my_slider, _ = slider(self.update, init=self.n, minval=100000, maxval=10 ** 6, valstep=100000)
         inst_text_box = self.menu.text_box(s.inst_calculate_pi, [0.5, 0.78], size=20)
 
         if self.menu != '0':  # menu == '0' -> Back
@@ -497,6 +490,67 @@ class Algorithms:
             point_text_box.remove()
             pi_text_box.remove()
             plot_ax.remove()
-
         inst_text_box.remove()
         my_slider.remove()
+
+    ### [10] Game of Life ###
+    def game_of_life(self):
+        # a. generate input and vialization objects:
+        self.menu.title.set_text(s.game_of_life)
+        inst_text_box = self.menu.text_box(s.game_of_life, [0.5, 0.78])
+        while self.wait(): plt.pause(0.0001)
+        self.set_wait()
+        (ROWS, COLS) = 50, 100
+        iterations = 30
+        if self.menu != '0':  # menu == '0' -> Back
+            iter_text_box = self.menu.text_box(f'Iteration: 0', [.5, .1], size=32)
+            board = rd.choice([0, 1], size=(ROWS, COLS), p=(.7, .3))
+            grix_ax = self.menu.fig.add_axes((-1, .1, 3, .7))
+            grix_ax.axis('off')
+            grix_ax.imshow(board, cmap='summer')
+
+            # b. algorithm starts here:
+            for iteration in range(iterations):
+                def get_neighbors(self):
+                    nonlocal i, j, board
+                    neighbors = 0
+
+                    def in_grid():
+                        nonlocal xx, yy, board
+                        return (0 <= xx < len(board)) and (0 <= yy < len(board[xx]))
+
+                    offsets = ((-1, 0), (1, 0), (0, -1), (0, 1), (1, 1), (-1, -1), (-1, 1), (1, -1))
+                    for dx, dy in offsets:
+                        xx, yy = i + dx, j + dy
+                        if in_grid() and board[xx][yy]:
+                            neighbors += 1
+                    return neighbors
+
+                ans = [[0] * len(board[0]) for _ in range(len(board))]
+
+                for i in range(len(board)):
+                    for j in range(len(board[i])):
+                        n = get_neighbors((i, j))
+                        if board[i][j]:  # if live
+                            if n < 2 or n > 3:
+                                ans[i][j] = 0
+                            else:
+                                ans[i][j] = 1
+                        elif n == 3:
+                            ans[i][j] = 1
+                        else:
+                            ans[i][j] = 0
+
+                for i in range(len(board)):
+                    for j in range(len(board[i])):
+                        board[i][j] = ans[i][j]
+
+                grix_ax.imshow(board, cmap='summer')
+                iter_text_box.set_text(iteration)
+                plt.pause(.00000000001)
+            # c. algorithm ends here
+            while self.wait(): plt.pause(.00001)
+            self.set_wait()
+            grix_ax.remove()
+            iter_text_box.remove()
+        inst_text_box.remove()

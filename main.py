@@ -17,46 +17,37 @@ def main():
         # Menu State Machine:
         if menu == '0':
             menu.main_page('$\mathtt{Algorithm\ Visualizer}$')
-            while menu == '0':
-                plt.pause(0.001)
-                continue
+            while menu == '0': plt.pause(0.00001)
             menu.wait = True
-        # 1. Sort Color's:
-        elif menu == '1':
-            menu.function_page(s.sort_colors)
-            algo.sort_colors()
-        elif menu == '2':
-            menu.function_page(s.num_islands)
-            algo.numIslands()
-        elif menu == '3':
-            menu.function_page(s.max_profit)
-            algo.maxProfit()
-        elif menu == '4':
-            menu.function_page(s.add_two_huge_numbers)
-            algo.add_two_huge_numbers()
-        elif menu == '5':
-            menu.function_page(s.rotate_image)
-            algo.rotate_image()
-        elif menu == '6':
-            menu.function_page(s.rotated_array)
-            algo.rotated_sorted_array()
-        elif menu == '7':
-            menu.function_page(s.nearest_exit)
-            algo.nearest_exit()
-        elif menu == '8':
-            menu.function_page(s.rotate_list)
-            algo.rotate_list()
-        elif menu == '9':
-            menu.function_page(s.calculate_pi)
-            algo.calculate_pi()
-        elif menu == '10':
-            pass
-        # Exit the program:
-        elif menu == 'Exit':
-            plt.pause(.25)
-            plt.close()
-            break
-        plt.pause(0.0001)
+        else:
+            menu.function_page()
+            # 1. Sort Color's:
+            if menu == '1':
+                algo.sort_colors()
+            elif menu == '2':
+                algo.num_islands()
+            elif menu == '3':
+                algo.max_profit()
+            elif menu == '4':
+                algo.add_two_huge_numbers()
+            elif menu == '5':
+                algo.rotate_image()
+            elif menu == '6':
+                algo.rotated_sorted_array()
+            elif menu == '7':
+                algo.nearest_exit()
+            elif menu == '8':
+                algo.rotate_list()
+            elif menu == '9':
+                algo.calculate_pi()
+            elif menu == '10':
+                algo.game_of_life()
+            # Exit the program:
+            elif menu == 'Exit':
+                plt.pause(.25)
+                plt.close()
+                break
+            plt.pause(0.0001)
 
 if __name__ == "__main__":
     main()

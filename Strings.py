@@ -48,5 +48,6 @@ inst_calculate_pi = "Given a function that produces a number in the range [0,1],
 
 # q10:
 
-container = "Container With Most Water"
-inst_container = ""
+game_of_life = "Game of Life"
+inst_game_of_life = """According to Wikipedia's article: "The Game of Life, also known simply as Life,
+ is a cellular automaton devised by the British mathematician John Horton Conway in 1970."""""
