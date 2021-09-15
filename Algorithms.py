@@ -333,12 +333,10 @@ class Algorithms:
             length = len(lst)
             k = k % length
             if k != 0:
-                node = lst[-k]  # get the kth node from the end
+                node, tail = lst[-k]  # get the kth node from the end
                 new_head = node.next
                 node.next = None
-                temp = new_head
-                while temp and temp.next: temp = temp.next
-                temp.next = lst.head
+                tail.next = lst.head
                 lst.head = new_head
             # c. algorithm ends here
             out_text_box = self.menu.text_box(f"Output: {lst}", location=(.5, .4), size=20, color="#2ff4fc")

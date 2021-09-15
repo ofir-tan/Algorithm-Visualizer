@@ -44,12 +44,6 @@ class LinkedList:
             k -= 1
         self.head = prev
 
-    def get_tail(self):
-        node = self.head
-        while node and node.next:
-            node = node.next
-        return node
-
     def get_Kth(self, k):
         node = self.head
         for _ in range(k):
@@ -61,4 +55,4 @@ class LinkedList:
         head = self.head
         while node and node.next:
             head, node = head.next, node.next
-        return head
+        return head, node
